@@ -1,0 +1,35 @@
+Table Victim {
+  id long [pk]
+  name string
+  lastname string
+  age int
+  occupation string
+  FkmannerMurderId long [ref: - mannerOfMurder.id] // Relación 1 - 1 con mannerOfMurder
+  FkKillerId long [ref: > Killer.id] // Relación n - 1 con Killer
+  FamiliaId long [ref: - Familia.id] // Relación 1 - 1 con Familia
+}
+
+Table Familia {
+  id long [pk]
+  name string
+  numberMembers int
+}
+
+Table Killer {
+  id long [pk]
+  name string
+  lastname string
+  alias string
+  description string
+}
+
+Table mannerOfMurder {
+  id long [pk]
+  name string
+  description string
+}
+
+Table Killer_MannerOfMurder {
+  KillerId long [ref: > Killer.id]
+  MannerOfMurderId long [ref: > mannerOfMurder.id]
+}
