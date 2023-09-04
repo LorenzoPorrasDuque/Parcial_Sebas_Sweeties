@@ -3,8 +3,11 @@ package com.parcial.sweeties.Services;
 import com.parcial.sweeties.DAOs.IFamilyDAO;
 import com.parcial.sweeties.Models.Family;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+@Service
 
 public class FamilyService implements IFamilyService {
     @Autowired

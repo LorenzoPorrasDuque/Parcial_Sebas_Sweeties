@@ -8,7 +8,6 @@ import java.io.Serializable;
 
 @Entity
 @Table
-@Getter
 public class Victim implements Serializable {
 
     @Id
@@ -16,16 +15,23 @@ public class Victim implements Serializable {
     private Long id;
     @Column
     @Setter
+    @Getter
     private String name;
     @Column
     @Setter
+    @Getter
     private String last_name;
     @Column
     @Setter
+    @Getter
     private String age;
     @Column
     @Setter
+    @Getter
     private String occupation;
-
+    @Column
+    @Setter
+    @Getter
+    private String description;
 
 }

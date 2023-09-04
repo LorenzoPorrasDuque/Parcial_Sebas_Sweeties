@@ -12,14 +12,15 @@ import java.io.Serializable;
 public class MannerOfMurder implements Serializable {
     @Id
     @Setter
+    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Getter
     @Setter
+    @Getter
     @Column
     private String type;
-    @Getter
     @Setter
+    @Getter
     @Column
     private String description;
 }

@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-@Getter
 @Entity
 @Table
 public class Killer implements Serializable {
@@ -14,15 +13,19 @@ public class Killer implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Setter
+    @Getter
     @Column
     private String name;
     @Setter
+    @Getter
     @Column
     private String last_name;
     @Setter
+    @Getter
     @Column
     private String nickname;
     @Setter
+    @Getter
     @Column
     private String description;
 

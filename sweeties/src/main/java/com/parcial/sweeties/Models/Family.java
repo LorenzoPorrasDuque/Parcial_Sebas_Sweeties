@@ -8,16 +8,19 @@ import java.io.Serializable;
 
 @Entity
 @Table
-@Getter
 public class Family implements Serializable {
     @Id
+    @Setter
+    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     @Setter
+    @Getter
     private String name;
     @Column
     @Setter
+    @Getter
     private int number_members;
 
 

@@ -3,9 +3,11 @@ package com.parcial.sweeties.Services;
 import com.parcial.sweeties.DAOs.IVictimDAO;
 import com.parcial.sweeties.Models.Victim;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class VictimService implements IVictimService {
     @Autowired
     private IVictimDAO victimDAO;

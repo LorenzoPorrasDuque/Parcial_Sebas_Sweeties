@@ -3,9 +3,11 @@ package com.parcial.sweeties.Services;
 import com.parcial.sweeties.DAOs.IMannerOfMurderDAO;
 import com.parcial.sweeties.Models.MannerOfMurder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MannerOfMurderService implements IMannerOfMurderService {
     @Autowired
     private IMannerOfMurderDAO manner_Of_Murder_ServiceDAO;

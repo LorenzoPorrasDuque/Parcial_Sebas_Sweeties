@@ -4,9 +4,11 @@ package com.parcial.sweeties.Services;
 import com.parcial.sweeties.DAOs.IKillerDAO;
 import com.parcial.sweeties.Models.Killer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class KillerService implements IKillerService {
     @Autowired
     private IKillerDAO killerDAO;
