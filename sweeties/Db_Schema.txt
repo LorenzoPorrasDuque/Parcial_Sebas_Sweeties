@@ -9,7 +9,7 @@ Table Victim {
   FamiliaId long [ref: - Familia.id] // Relación 1 - 1 con Familia
 }
 
-Table Familia {
+Table Family{
   id long [pk]
   name string
   numberMembers int
