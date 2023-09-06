@@ -6,7 +6,7 @@ Table Victim {
   occupation string
   FkmannerMurderId long [ref: - mannerOfMurder.id] // Relación 1 - 1 con mannerOfMurder
   FkKillerId long [ref: > Killer.id] // Relación n - 1 con Killer
-  FamiliaId long [ref: - Familia.id] // Relación 1 - 1 con Familia
+  FamilyId long [ref: > Family.id] // Relación 1 - 1 con Familia
 }
 
 Table Family{
