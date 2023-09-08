@@ -33,3 +33,63 @@ Table Killer_MannerOfMurder {
   KillerId long [ref: > Killer.id]
   MannerOfMurderId long [ref: > mannerOfMurder.id]
 }
+
+-- DATA
+
+-- Insertar datos en la tabla "family":
+INSERT INTO family (name, number_members) VALUES ('Familia Smith', 4);
+INSERT INTO family (name, number_members) VALUES ('Familia Johnson', 3);
+INSERT INTO family (name, number_members) VALUES ('Familia Rodriguez', 5);
+INSERT INTO family (name, number_members) VALUES ('Familia Brown', 2);
+INSERT INTO family (name, number_members) VALUES ('Familia Martinez', 6);
+INSERT INTO family (name, number_members) VALUES ('Familia Davis', 4);
+
+-- Insertar datos en la tabla "killer":
+INSERT INTO killer (description, last_name, name, nickname) VALUES ('Asesino despiadado', 'Smith', 'John', 'El Cortador');
+INSERT INTO killer (description, last_name, name, nickname) VALUES ('Maníaco sangriento', 'Johnson', 'David', 'El Carnicero');
+INSERT INTO killer (description, last_name, name, nickname) VALUES ('Serial killer en serie', 'Rodriguez', 'Carlos', 'El Asfixiador');
+INSERT INTO killer (description, last_name, name, nickname) VALUES ('El Escurridizo', 'Brown', 'Emily', 'La Sombra');
+INSERT INTO killer (description, last_name, name, nickname) VALUES ('El Intruso Misterioso', 'Martinez', 'Maria', 'El Fantasma');
+INSERT INTO killer (description, last_name, name, nickname) VALUES ('El Desconocido', 'Davis', 'Michael', 'El Enmascarado');
+
+-- Insertar datos en la tabla "victim":
+INSERT INTO victim (age, description, last_name, name, occupation, family_id, killer_id) VALUES ('45', 'Víctima de Asesino 1', 'Smith', 'Alice', 'Doctora', 1, 1);
+INSERT INTO victim (age, description, last_name, name, occupation, family_id, killer_id) VALUES ('32', 'Víctima de Asesino 2', 'Johnson', 'Robert', 'Abogado', 2, 2);
+INSERT INTO victim (age, description, last_name, name, occupation, family_id, killer_id) VALUES ('28', 'Víctima de Asesino 3', 'Rodriguez', 'Luis', 'Estudiante', 3, 3);
+INSERT INTO victim (age, description, last_name, name, occupation, family_id, killer_id) VALUES ('37', 'Víctima de Asesino 4', 'Brown', 'Sophia', 'Artista', 4, 4);
+INSERT INTO victim (age, description, last_name, name, occupation, family_id, killer_id) VALUES ('52', 'Víctima de Asesino 5', 'Martinez', 'Juan', 'Ingeniero', 5, 5);
+INSERT INTO victim (age, description, last_name, name, occupation, family_id, killer_id) VALUES ('30', 'Víctima de Asesino 6', 'Davis', 'Elizabeth', 'Enfermera', 6, 6);
+
+-- Insertar datos en la tabla "manner_of_murder":
+INSERT INTO manner_of_murder (description, type, victim_id) VALUES ('Apuñalado', 'Violento', 1);
+INSERT INTO manner_of_murder (description, type, victim_id) VALUES ('Estrangulado', 'Violento', 2);
+INSERT INTO manner_of_murder (description, type, victim_id) VALUES ('Envenenado', 'Sigiloso', 3);
+INSERT INTO manner_of_murder (description, type, victim_id) VALUES ('Asfixiado', 'Violento', 4);
+INSERT INTO manner_of_murder (description, type, victim_id) VALUES ('Desecho tóxico', 'Sigiloso', 5);
+INSERT INTO manner_of_murder (description, type, victim_id) VALUES ('Ataque sorpresa', 'Violento', 6);
+
+-- Insertar datos en la tabla "killer_manner_of_murder":
+INSERT INTO killer_manner_of_murder (manner_of_murder_id, killer_id) VALUES (1, 1);
+INSERT INTO killer_manner_of_murder (manner_of_murder_id, killer_id) VALUES (2, 2);
+INSERT INTO killer_manner_of_murder (manner_of_murder_id, killer_id) VALUES (3, 3);
+INSERT INTO killer_manner_of_murder (manner_of_murder_id, killer_id) VALUES (4, 4);
+INSERT INTO killer_manner_of_murder (manner_of_murder_id, killer_id) VALUES (5, 5);
+INSERT INTO killer_manner_of_murder (manner_of_murder_id, killer_id) VALUES (6, 6);
+
+
+-- buscar la familia de la persona
+select v.name, last_name ,f.name as family
+from victim v LEFT JOIN public.family f on v.family_id = f.id
+where v.id= 2
+;
+-- asesino con todas sus formas de asesinato
+select k.name, k.last_name, k.nickname, mom.type,mom.description
+from killer k
+left join public.killer_manner_of_murder kmom on k.id = kmom.killer_id left join public.manner_of_murder mom on mom.id = kmom.manner_of_murder_id
+where killer_id=1;
+-- modo de muerte de una victima
+select v.name,v.last_name,mom.type,mom.description
+from victim as v  left join public.manner_of_murder mom on v.id = mom.victim_id where victim_id = 2;
+-- asesino de de una victima
+select v.name as victim,k.name as killer_name,k.nickname
+from victim as v  left join public.killer k on v.killer_id = k.id where v.id = 1;
