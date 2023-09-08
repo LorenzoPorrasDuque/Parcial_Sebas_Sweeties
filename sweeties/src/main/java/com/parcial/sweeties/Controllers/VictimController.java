@@ -71,4 +71,44 @@ public class VictimController {
         }
         return victimService.create_victim(actual);
     }
+
+    @GetMapping("/victim_data/{victimId}")
+    public ResponseEntity<List<Map<String, Object>>> getVictimData(@PathVariable Long victimId) {
+        List<Map<String, Object>> victimDataList = victimService.search_family(victimId);
+        if (!victimDataList.isEmpty()) {
+            return ResponseEntity.ok(victimDataList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/killer_manner/{killerid}")
+    public ResponseEntity<List<Map<String, Object>>> get_killer_manner(@PathVariable Long killerid) {
+        List<Map<String, Object>> victimDataList = victimService.killer_manners(killerid);
+        if (!victimDataList.isEmpty()) {
+            return ResponseEntity.ok(victimDataList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/manner_victim/{victimId_manner}")
+    public ResponseEntity<List<Map<String, Object>>> get_manner_victim(@PathVariable Long victimId_manner) {
+        List<Map<String, Object>> victimDataList = victimService.manner_victim(victimId_manner);
+        if (!victimDataList.isEmpty()) {
+            return ResponseEntity.ok(victimDataList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/killer_victim/{victimId_killer}")
+    public ResponseEntity<List<Map<String, Object>>> get_killer_victim(@PathVariable Long victimId_killer) {
+        List<Map<String, Object>> victimDataList = victimService.killer_victim(victimId_killer);
+        if (!victimDataList.isEmpty()) {
+            return ResponseEntity.ok(victimDataList);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
