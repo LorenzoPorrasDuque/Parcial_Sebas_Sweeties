@@ -1,6 +1,8 @@
 package com.parcial.sweeties.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,18 +46,22 @@ public class Victim implements Serializable {
 
         // Relacion Victim - MannerOfMurder (1 - 1)
         @OneToOne(mappedBy = "victim")
+        @Getter
+        @Setter
         private MannerOfMurder mannerOfMurder;
 
         // Relacion Victim - Family (n - 1)
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "family_id")
-        @JsonIgnore
+        @Getter
+        @Setter
         private Family family;
 
-        // Relacion Victim - Killer
-        @ManyToOne(fetch = FetchType.LAZY)
+    // Relacion Victim - Killer
+        @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name="killer_id")
-        @JsonIgnore
+        @Getter
+        @Setter
         private Killer killer;
 
 }

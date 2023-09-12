@@ -1,5 +1,6 @@
 package com.parcial.sweeties.Models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,6 +33,7 @@ public class Family implements Serializable {
 
         // Relacion Family - Victim (1 - n)
         @OneToMany(mappedBy = "family")
+
         private List<Victim> victim;
 
 
